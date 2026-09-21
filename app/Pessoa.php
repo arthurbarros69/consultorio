@@ -1,10 +1,10 @@
-<php 
-abstract class Pessoa{
+<?php
+abstract class Pessoa {
     public $id;
     public $nome;
     public $cpf;
     public $telefone;
     public $email;
-    public $dataNascimento;
-    public $endreco;
+    public $data_nascimento;
+    public $endereco;
 }
