@@ -1,54 +1,61 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+include(__DIR__ . '/../includes/cabecalho.php');
+include(__DIR__ . '/../includes/menu.php');
 
-require __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../app/Paciente.php';
 
 $pacientes = Paciente::listar();
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Pacientes</title>
-    <style>
-        body  { font-family: Arial, sans-serif; max-width: 900px; margin: 30px auto; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background: #f0f0f0; }
-        a.novo { display: inline-block; margin-bottom: 16px; }
-    </style>
-</head>
-<body>
-    <h2>Pacientes</h2>
-    <p><a class="novo" href="/consultorio/view/paciente/cadastrar.php">+ Novo paciente</a></p>
+<main class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="m-0">Pacientes</h1>
+        <a href="/consultorio/view/paciente/cadastrar.php" class="btn btn-primary">Novo Paciente</a>
+    </div>
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Nascimento</th>
-            <th>Telefone</th>
-            <th>E-mail</th>
-            <th>Convênio</th>
-        </tr>
-        <?php if (empty($pacientes)): ?>
-            <tr><td colspan="7">Nenhum paciente cadastrado.</td></tr>
-        <?php else: ?>
-            <?php foreach ($pacientes as $p): ?>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-primary">
                 <tr>
-                    <td><?= htmlspecialchars($p['id']) ?></td>
-                    <td><?= htmlspecialchars($p['nome']) ?></td>
-                    <td><?= htmlspecialchars($p['cpf']) ?></td>
-                    <td><?= htmlspecialchars($p['data_nascimento']) ?></td>
-                    <td><?= htmlspecialchars($p['telefone'] ?? '') ?></td>
-                    <td><?= htmlspecialchars($p['email'] ?? '') ?></td>
-                    <td><?= htmlspecialchars($p['convenio'] ?? '') ?></td>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Nascimento</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Endereço</th>
+                    <th>Convênio</th>
+                    <th>Observação</th>
                 </tr>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </table>
-</body>
-</html>
+            </thead>
+            <tbody>
+            <?php if (empty($pacientes)): ?>
+                <tr>
+                    <td colspan="8" class="text-center text-muted">Nenhum paciente cadastrado.</td>
+                </tr>
+            <?php else: ?>
+                <?php foreach ($pacientes as $p): ?>
+                    <?php $p = (array) $p; ?>
+                    <tr>
+                        <td><?= htmlspecialchars($p['nome'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($p['cpf'] ?? '') ?></td>
+                        <td>
+                            <?php
+                            $data = $p['data_nascimento'] ?? '';
+                            echo $data ? date('d/m/Y', strtotime($data)) : '';
+                            ?>
+                        </td>
+                        <td><?= htmlspecialchars($p['telefone'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($p['email'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($p['endereco'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($p['convenio'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($p['observacao'] ?? '') ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="pb-5"></div>
+</main>
+
+<?php include(__DIR__ . '/../includes/rodape.php'); ?>
