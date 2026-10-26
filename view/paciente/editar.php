@@ -108,4 +108,4 @@ include __DIR__ . '/../includes/menu.php';
 
 </main>
 
-<?php include __DIR__ . '/../includes/rodape.php'; ?> 
+<?php include __DIR__ . '/../includes/rodape.php'; ?>

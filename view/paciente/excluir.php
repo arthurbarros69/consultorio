@@ -14,4 +14,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $id) {
 
 // Volta para a lista (ajuste se o seu arquivo da lista não for listar.php)
 header('Location: /consultorio/view/paciente/listar.php');
-exit; 
+exit;
