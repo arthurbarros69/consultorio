@@ -69,4 +69,4 @@ class Paciente extends Pessoa
         $db = new DataBase('paciente');
         return $db->select('nome ASC');
     }
-}
+} 

@@ -84,3 +84,5 @@ class Funcionario extends Pessoa
         return $db->select()->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
+ 

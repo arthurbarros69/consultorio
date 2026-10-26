@@ -111,4 +111,4 @@ function mostrarEstadoDoDDD(valorFormatado) {
 }
 </script>
 
-<?php include(__DIR__ . '/../includes/rodape.php'); ?>
+<?php include(__DIR__ . '/../includes/rodape.php'); ?> 
