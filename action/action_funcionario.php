@@ -42,3 +42,5 @@ switch ($action) {
     default:
         echo 'Ação inválida.';
 }
+
+
